@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño de la base de datos del subsistema</title>
+</head>
+<body>
+    <li><a href="../index.html"> Inicio</a></li>
+
+    <h1>Diseño de la base de datos del subsistema</h1>
+
+    <td><img src="diagrama.jpeg" alt="Diagrama de BD" width="900"></td>
+
+    <h2><strong>Descripción de la arquitectura de la Base de Datos</strong></h2>
+    <p>
+        La base de datos del subsistema gestiona la información de los pacientes y sus consultas. Contiene las siguientes tablas:
+    </p>
+    <ul>
+        <li>Pacientes: Almacena datos personales, como nombre, edad, sexo, teléfono, correo electrónico, alergias y cirugías.</li>
+        <li>Consulta: Registra cada consulta médica. Está vinculada a Pacientes a través de <code>PacienteID</code>, e incluye la fecha, síntomas y recomendaciones.</li>
+        <li>ConsultaSeguimiento: Guarda información sobre seguimientos de consultas, incluyendo la fecha y observaciones.</li>
+        <li>HistorialClinico: Relaciona registros de Consulta y ConsultaSeguimiento, almacenando signos vitales, dolencias, diagnósticos, dosis de medicamentos y notas adicionales.</li>
+    </ul>
+
+    <p><strong>Relaciones entre las tablas</strong></p>
+    <ol>
+        <li>Pacientes a Consulta: Un paciente puede tener múltiples consultas. La tabla Consulta usa <code>PacienteID</code> como clave foránea para referirse a Pacientes.</li>
+        <li>Consulta a HistorialClinico: Cada registro en HistorialClinico se vincula a una consulta específica mediante <code>ConsultaID</code>, lo que permite acceder al historial de esa consulta.</li>
+        <li>ConsultaSeguimiento a HistorialClinico: Cada registro en HistorialClinico también se vincula a un seguimiento específico mediante <code>SeguimientoID</code>, permitiendo registrar observaciones adicionales.</li>
+    </ol>
+
+    <h2><strong>Normalización de la Base de Datos</strong></h2>
+    <li><strong>Primera Forma Normal (1NF)</strong></li>
+    <p>
+        Requiere que todos los atributos contengan valores atómicos (indivisibles) y que cada fila sea única. Esto elimina la duplicación de datos y asegura que cada campo almacene un solo valor.
+    </p>
+    
+    <li><strong>Segunda Forma Normal (2NF)</strong></li>
+    <p>
+        Exige que todos los atributos no clave dependan completamente de la clave primaria. Esto elimina las dependencias parciales, garantizando que cada dato esté relacionado directamente con la clave principal y no con otras columnas.
+    </p>
+    
+    <li><strong>Tercera Forma Normal (3NF)</strong></li>
+    <p>
+        Establece que no debe haber dependencias transitivas entre atributos. Esto significa que los atributos deben depender únicamente de la clave primaria, evitando redundancias y asegurando la integridad de los datos.
+    </p>
+
+    <h2><strong>Código SQL para crear tablas</strong></h2>
+    <pre>
+        <code>
+CREATE DATABASE SubsistemaP;
+USE SubsistemaP;
+
+CREATE TABLE Pacientes (
+    PacienteID INT PRIMARY KEY IDENTITY(1,1),
+    NombreCompleto NVARCHAR(100) NOT NULL,
+    Edad INT,
+    Sexo CHAR(1), -- 'M' para masculino, 'F' para femenino
+    Telefono NVARCHAR(15),
+    Correo NVARCHAR(100),
+    Alergias NVARCHAR(255),
+    Cirugias NVARCHAR(255)
+);
+
+CREATE TABLE Consulta (
+    ConsultaID INT PRIMARY KEY IDENTITY(1,1),
+    PacienteID INT,
+    FechaConsulta DATETIME NOT NULL,
+    Sintomas NVARCHAR(255),
+    Recomendaciones NVARCHAR(255),
+    FOREIGN KEY (PacienteID) REFERENCES Pacientes(PacienteID)
+);
+
+CREATE TABLE ConsultaSeguimiento (
+    SeguimientoID INT PRIMARY KEY IDENTITY(1,1),
+    FechaSeguimiento DATETIME NOT NULL,
+    Observaciones NVARCHAR(255)
+);
+
+CREATE TABLE HistorialClinico (
+    HistorialID INT PRIMARY KEY IDENTITY(1,1),
+    ConsultaID INT,
+    SeguimientoID INT,
+    SignosVitales NVARCHAR(255),
+    Dolencias NVARCHAR(255),
+    Malestares NVARCHAR(255),
+    Diagnostico NVARCHAR(255),
+    FechaRegistro DATETIME NOT NULL,
+    DosisMedicamentos NVARCHAR(255),
+    NotasAdicionales NVARCHAR(255),
+    FOREIGN KEY (ConsultaID) REFERENCES Consulta(ConsultaID),
+    FOREIGN KEY (SeguimientoID) REFERENCES ConsultaSeguimiento(SeguimientoID)
+);
+        </code>
+    </pre>
+    </code>
+
+    
+    <h2><strong>Código SQL para Agregar Registros</strong></h2>
+    <pre>
+        <code>
+                        
+            -- Agregar registros a la tabla Pacientes
+            INSERT INTO Pacientes (NombreCompleto, Edad, Sexo, Telefono, Correo, Alergias, Cirugias) VALUES
+            ('Juan Pérez', 30, 'M', '555-1234', 'juan.perez@email.com', 'Ninguna', 'Ninguna'),
+            ('María Gómez', 25, 'F', '555-5678', 'maria.gomez@email.com', 'Polvo', 'Apendectomía');
+
+            -- Agregar registros a la tabla Consulta
+            INSERT INTO Consulta (PacienteID, FechaConsulta, Sintomas, Recomendaciones) VALUES
+            (1, '2023-10-01 10:00:00', 'Dolor de cabeza', 'Descanso y analgésicos'),
+            (2, '2023-10-02 11:00:00', 'Fiebre', 'Hidratación y control de temperatura');
+
+            -- Agregar registros a la tabla ConsultaSeguimiento
+            INSERT INTO ConsultaSeguimiento (FechaSeguimiento, Observaciones) VALUES
+            ('2023-10-08 10:00:00', 'Mejora en los síntomas de Juan'),
+            ('2023-10-09 11:00:00', 'María presenta una leve mejoría');
+
+            -- Agregar registros a la tabla HistorialClinico
+            INSERT INTO HistorialClinico (ConsultaID, SeguimientoID, SignosVitales, Dolencias, Malestares, Diagnostico, FechaRegistro, DosisMedicamentos, NotasAdicionales) VALUES
+            (1, 1, 'Tensión normal', 'Ninguna', 'Fatiga leve', 'Cefalea', '2023-10-01', 'Paracetamol 500mg', 'Revisar en una semana'),
+            (2, 2, 'Tensión normal', 'Tos leve', 'Ninguno', 'Infección viral', '2023-10-02', 'Ibuprofeno 400mg', 'Controlar temperatura diariamente');
+        </code>
+    </pre>
+</body>
+</html>
