@@ -104,22 +104,22 @@ CREATE TABLE HistorialClinico (
             -- Agregar registros a la tabla Pacientes
             INSERT INTO Pacientes (NombreCompleto, Edad, Sexo, Telefono, Correo, Alergias, Cirugias) VALUES
             ('Juan Pérez', 30, 'M', '555-1234', 'juan.perez@email.com', 'Ninguna', 'Ninguna'),
-            ('María Gómez', 25, 'F', '555-5678', 'maria.gomez@email.com', 'Polvo', 'Apendectomía');
-
+            ('María Gómez', 25, 'F', '555-5678', 'maria.gomez@email.com', 'Ninguna', 'Ninguna');
+            
             -- Agregar registros a la tabla Consulta
             INSERT INTO Consulta (PacienteID, FechaConsulta, Sintomas, Recomendaciones) VALUES
-            (1, '2023-10-01 10:00:00', 'Dolor de cabeza', 'Descanso y analgésicos'),
-            (2, '2023-10-02 11:00:00', 'Fiebre', 'Hidratación y control de temperatura');
-
+            (1, '2023-10-01 10:00:00', 'Dolor lumbar', 'Fisioterapia y ejercicios de estiramiento'),
+            (2, '2023-10-02 11:00:00', 'Ansiedad', 'Terapia cognitivo-conductual y mindfulness');
+            
             -- Agregar registros a la tabla ConsultaSeguimiento
             INSERT INTO ConsultaSeguimiento (FechaSeguimiento, Observaciones) VALUES
-            ('2023-10-08 10:00:00', 'Mejora en los síntomas de Juan'),
-            ('2023-10-09 11:00:00', 'María presenta una leve mejoría');
-
+            ('2023-10-08 10:00:00', 'Juan reporta mejoría en el dolor lumbar'),
+            ('2023-10-09 11:00:00', 'María ha comenzado a implementar técnicas de relajación');
+            
             -- Agregar registros a la tabla HistorialClinico
             INSERT INTO HistorialClinico (ConsultaID, SeguimientoID, SignosVitales, Dolencias, Malestares, Diagnostico, FechaRegistro, DosisMedicamentos, NotasAdicionales) VALUES
-            (1, 1, 'Tensión normal', 'Ninguna', 'Fatiga leve', 'Cefalea', '2023-10-01', 'Paracetamol 500mg', 'Revisar en una semana'),
-            (2, 2, 'Tensión normal', 'Tos leve', 'Ninguno', 'Infección viral', '2023-10-02', 'Ibuprofeno 400mg', 'Controlar temperatura diariamente');
+            (1, 1, 'Tensión normal', 'Dolor lumbar', 'Rigidez', 'Lumbalgia', '2023-10-01', 'Ninguno', 'Continuar con la fisioterapia'),
+            (2, 2, 'Tensión normal', 'Ninguna', 'Nerviosismo', 'Trastorno de ansiedad', '2023-10-02', 'Ninguno', 'Revisar progreso en dos semanas');
         </code>
     </pre>
 </body>
