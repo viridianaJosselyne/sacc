@@ -102,41 +102,41 @@ CREATE TABLE HistorialClinico (
     <h2><strong>Código SQL para Agregar Registros</strong></h2>
     <pre>
         <code>
-            -- Tabla Pacientes
-            INSERT INTO Pacientes (NombreCompleto, Edad, Sexo, Telefono, Correo, Alergias, Cirugias)
-            VALUES 
-            ('Juan Pérez', 30, 'M', '555-0123', 'juan.perez@example.com', 'Ninguna', 'Ninguna'),
-            ('María López', 45, 'F', '555-0456', 'maria.lopez@example.com', 'Ninguna', 'Apendicitis'),
-            ('Carlos Gómez', 50, 'M', '555-0789', 'carlos.gomez@example.com', 'Ninguna', 'Ninguna'),
-            ('Ana Martínez', 28, 'F', '555-1011', 'ana.martinez@example.com', 'Polen', 'Ninguna'),
-            ('Luis Fernández', 60, 'M', '555-1213', 'luis.fernandez@example.com', 'Ninguna', 'Coronaria');
+        -- Tabla Pacientes
+        INSERT INTO Pacientes (NombreCompleto, Edad, Sexo, Telefono, Correo, Alergias, Cirugias)
+        VALUES 
+        ('Juan Pérez', 30, 'M', '555-0123', 'juan.perez@example.com', 'Ninguna', 'Ninguna'),
+        ('María López', 45, 'F', '555-0456', 'maria.lopez@example.com', 'Ninguna', 'Apendicitis'),
+        ('Carlos Gómez', 50, 'M', '555-0789', 'carlos.gomez@example.com', 'Ninguna', 'Ninguna'),
+        ('Ana Martínez', 28, 'F', '555-1011', 'ana.martinez@example.com', 'Polen', 'Ninguna'),
+        ('Luis Fernández', 60, 'M', '555-1213', 'luis.fernandez@example.com', 'Ninguna', 'Coronaria');
 
-            -- Tabla Consulta
-            INSERT INTO Consulta (PacienteID, FechaConsulta, Sintomas, Recomendaciones)
-            VALUES 
-            (1, '2024-10-01 09:00:00', 'Dolor en la espalda baja', 'Iniciar terapia física 2 veces por semana'),
-            (2, '2024-10-05 10:30:00', 'Rigidez en los hombros', 'Ejercicios de estiramiento y terapia manual'),
-            (3, '2024-10-10 14:00:00', 'Dolor en la rodilla derecha', 'Terapia física y uso de compresas frías'),
-            (4, '2024-10-15 11:00:00', 'Fatiga muscular', 'Sesiones de terapia física y fortalecimiento muscular'),
-            (5, '2024-10-20 16:00:00', 'Recuperación post-cirugía', 'Terapia física para movilidad y fuerza');
+        -- Tabla Consulta
+        INSERT INTO Consulta (PacienteID, FechaConsulta, Sintomas, Recomendaciones)
+        VALUES 
+        (1, '2024-10-01 09:00:00', 'Dolor en la espalda baja', 'Iniciar terapia física 2 veces por semana'),
+        (2, '2024-10-05 10:30:00', 'Rigidez en los hombros', 'Ejercicios de estiramiento y terapia manual'),
+        (3, '2024-10-10 14:00:00', 'Dolor en la rodilla derecha', 'Terapia física y uso de compresas frías'),
+        (4, '2024-10-15 11:00:00', 'Fatiga muscular', 'Sesiones de terapia física y fortalecimiento muscular'),
+        (5, '2024-10-20 16:00:00', 'Recuperación post-cirugía', 'Terapia física para movilidad y fuerza');
 
-            -- Tabla ConsultaSeguimiento
-            INSERT INTO ConsultaSeguimiento (FechaSeguimiento, Observaciones)
-            VALUES 
-            ('2024-10-08 09:00:00', 'Mejora en la movilidad y reducción del dolor'),
-            ('2024-10-12 10:30:00', 'Continúa con rigidez, se recomienda aumentar la frecuencia de sesiones'),
-            ('2024-10-17 14:00:00', 'Dolor leve, se sugiere continuar con el tratamiento actual'),
-            ('2024-10-22 11:00:00', 'Progreso notable en fuerza, aumentar ejercicios'),
-            ('2024-10-25 16:00:00', 'Buena respuesta a la terapia, continuar con el plan');
+        -- Tabla ConsultaSeguimiento
+        INSERT INTO ConsultaSeguimiento (FechaSeguimiento, Observaciones)
+        VALUES 
+        ('2024-10-08 09:00:00', 'Mejora en la movilidad y reducción del dolor'),
+        ('2024-10-12 10:30:00', 'Continúa con rigidez, se recomienda aumentar la frecuencia de sesiones'),
+        ('2024-10-17 14:00:00', 'Dolor leve, se sugiere continuar con el tratamiento actual'),
+        ('2024-10-22 11:00:00', 'Progreso notable en fuerza, aumentar ejercicios'),
+        ('2024-10-25 16:00:00', 'Buena respuesta a la terapia, continuar con el plan');
 
-            -- Tabla HistorialClinico
-            INSERT INTO HistorialClinico (ConsultaID, SeguimientoID, SignosVitales, Dolencias, Malestares, Diagnostico, FechaRegistro, DosisMedicamentos, NotasAdicionales)
-            VALUES 
-            (1, 1, 'Tensión: 120/80', 'Dolor lumbar', 'Inmovilidad', 'Lumbalgia', '2024-10-01 09:00:00', 'N/A', 'Requiere seguimiento semanal'),
-            (2, 2, 'Tensión: 118/76', 'Rigidez en hombros', 'Dolor al mover brazos', 'Tensión muscular', '2024-10-05 10:30:00', 'N/A', 'Iniciar ejercicios en casa'),
-            (3, 3, 'Tensión: 125/80', 'Dolor en la rodilla', 'Dificultad para caminar', 'Lesión de menisco', '2024-10-10 14:00:00', 'N/A', 'Requiere reposo parcial'),
-            (4, 4, 'Tensión: 122/78', 'Fatiga muscular', 'Debilidad', 'Fatiga post-ejercicio', '2024-10-15 11:00:00', 'N/A', 'Aumentar carga de ejercicios gradualmente'),
-            (5, 5, 'Tensión: 130/85', 'Dolor moderado', 'Inmovilidad parcial', 'Recuperación post-cirugía', '2024-10-20 16:00:00', 'N/A', 'Evaluar mejora en 2 semanas');
+        -- Tabla HistorialClinico
+        INSERT INTO HistorialClinico (ConsultaID, SeguimientoID, SignosVitales, Dolencias, Malestares, Diagnostico, FechaRegistro, DosisMedicamentos, NotasAdicionales)
+        VALUES 
+        (1, 1, 'Tensión: 120/80', 'Dolor lumbar', 'Inmovilidad', 'Lumbalgia', '2024-10-01 09:00:00', 'N/A', 'Requiere seguimiento semanal'),
+        (2, 2, 'Tensión: 118/76', 'Rigidez en hombros', 'Dolor al mover brazos', 'Tensión muscular', '2024-10-05 10:30:00', 'N/A', 'Iniciar ejercicios en casa'),
+        (3, 3, 'Tensión: 125/80', 'Dolor en la rodilla', 'Dificultad para caminar', 'Lesión de menisco', '2024-10-10 14:00:00', 'N/A', 'Requiere reposo parcial'),
+        (4, 4, 'Tensión: 122/78', 'Fatiga muscular', 'Debilidad', 'Fatiga post-ejercicio', '2024-10-15 11:00:00', 'N/A', 'Aumentar carga de ejercicios gradualmente'),
+        (5, 5, 'Tensión: 130/85', 'Dolor moderado', 'Inmovilidad parcial', 'Recuperación post-cirugía', '2024-10-20 16:00:00', 'N/A', 'Evaluar mejora en 2 semanas');
         </code>
     </pre>
 </body>
