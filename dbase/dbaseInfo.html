@@ -35,17 +35,17 @@
     <h2><strong>Normalización de la Base de Datos</strong></h2>
     <li><strong>Primera Forma Normal (1NF)</strong></li>
     <p>
-        Requiere que todos los atributos contengan valores atómicos (indivisibles) y que cada fila sea única. Esto elimina la duplicación de datos y asegura que cada campo almacene un solo valor.
+        Todos los atributos en cada tabla contienen valores atómicos. Por ejemplo, en la tabla Pacientes, los datos de cada paciente (nombre, edad, sexo, teléfono, correo electrónico y condiciones médicas) se almacenan en campos individuales, garantizando que cada campo contenga un único valor. Esto asegura que no hay listas ni conjuntos dentro de los campos, manteniendo la integridad de los datos.
     </p>
     
     <li><strong>Segunda Forma Normal (2NF)</strong></li>
     <p>
-        Exige que todos los atributos no clave dependan completamente de la clave primaria. Esto elimina las dependencias parciales, garantizando que cada dato esté relacionado directamente con la clave principal y no con otras columnas.
+        ada atributo no clave depende completamente de la clave primaria de su tabla. En la tabla HistorialClinico, todos los detalles del historial clínico, como antecedentes médicos, tratamientos previos y síntomas, dependen del identificador único del historial clínico (HistorialID). Esto evita dependencias parciales y asegura que cada campo contribuya directamente a describir el registro.
     </p>
     
     <li><strong>Tercera Forma Normal (3NF)</strong></li>
     <p>
-        Establece que no debe haber dependencias transitivas entre atributos. Esto significa que los atributos deben depender únicamente de la clave primaria, evitando redundancias y asegurando la integridad de los datos.
+        No existen dependencias transitivas en ninguna de las tablas. Por ejemplo, en la tabla Citas, todos los atributos dependen directamente de la clave primaria (CitaID), y no hay atributos no clave que dependan de otros atributos no clave. Además, los datos del paciente y del historial clínico están separados, lo que evita duplicación y mantiene la consistencia, asegurando que una cita esté relacionada con un paciente a través de la clave foránea (PacienteID).
     </p>
 
     <h2><strong>Código SQL para crear tablas</strong></h2>
