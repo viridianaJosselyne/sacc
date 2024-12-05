@@ -35,12 +35,12 @@
     <h2><strong>Normalización de la Base de Datos</strong></h2>
     <li><strong>Primera Forma Normal (1NF)</strong></li>
     <p>
-        Todos los atributos en cada tabla contienen valores atómicos. Por ejemplo, en la tabla Pacientes, los datos de cada paciente (nombre, edad, sexo, teléfono, correo electrónico y condiciones médicas) se almacenan en campos individuales, garantizando que cada campo contenga un único valor. Esto asegura que no hay listas ni conjuntos dentro de los campos, manteniendo la integridad de los datos.
+        Cada atributo en las tablas (Pacientes, Consulta, ConsultaSeguimiento, y HistorialClinico) contiene solo valores atómicos. No hay atributos que contengan listas o conjuntos de datos; cada columna se mantiene en un formato que permite almacenar un único valor por registro. Por ejemplo, en la tabla Pacientes, cada paciente tiene un solo nombre y un solo número de teléfono, lo que asegura que no hay grupos repetitivos
     </p>
     
     <li><strong>Segunda Forma Normal (2NF)</strong></li>
     <p>
-        ada atributo no clave depende completamente de la clave primaria de su tabla. En la tabla HistorialClinico, todos los detalles del historial clínico, como antecedentes médicos, tratamientos previos y síntomas, dependen del identificador único del historial clínico (HistorialID). Esto evita dependencias parciales y asegura que cada campo contribuya directamente a describir el registro.
+        Cada atributo no clave depende completamente de la clave primaria de su tabla. En la tabla HistorialClinico, todos los detalles del historial clínico, como antecedentes médicos, tratamientos previos y síntomas, dependen del identificador único del historial clínico (HistorialID). Esto evita dependencias parciales y asegura que cada campo contribuya directamente a describir el registro.
     </p>
     
     <li><strong>Tercera Forma Normal (3NF)</strong></li>
